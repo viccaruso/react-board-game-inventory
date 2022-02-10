@@ -6,6 +6,7 @@ import {
   NavLink,
   Route,
   Redirect,
+  Link,
 } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import DetailPage from './DetailPage';
@@ -22,7 +23,9 @@ export default function App() {
 
   async function handleLogout() {
     // call the logout function
+    await logout();
     // clear the user in state
+    setUser(localStorage.getItem('supabase.auth.token'));
   }
 
   return (
@@ -30,6 +33,14 @@ export default function App() {
       <div className='App'>
         <header>
           {/* if there is a user in state, render out a link to the board games list, the create page, and add a button to let the user logout */}
+          {user &&
+            <>
+              <Link to='/board-games'>View Board Games List</Link>
+              <Link to='/create'>Create Board Game Entry</Link>
+              <button type='button'>Logout</button>
+            </>
+          }
+
         </header>
         <main>
           <Switch>
