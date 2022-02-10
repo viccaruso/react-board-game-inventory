@@ -10,6 +10,7 @@ export default function ListPage() {
     async function fetch() {
       const games = await getGames();
       setAllGames(games);
+      console.log(allGames);
     }
     fetch();
 
