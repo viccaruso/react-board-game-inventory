@@ -14,7 +14,7 @@ export default function DetailPage() {
     }
     fetch();
 
-  }, []);
+  }, [match.params.id]);
 
   return (
     <div className='detail'>
