@@ -37,7 +37,7 @@ export default function App() {
             <>
               <Link to='/board-games'>View Board Games List</Link>
               <Link to='/create'>Create Board Game Entry</Link>
-              <button type='button'>Logout</button>
+              <button type='button' onClick={handleLogout}>Logout</button>
             </>
           }
 
@@ -54,12 +54,27 @@ export default function App() {
             </Route>
             <Route exact path="/board-games">
               {/* if there is a user, render the board games list. Otherwise, redirect to the home route/auth page */}
+              {
+                user
+                  ? <ListPage />
+                  : <Redirect to={'/'} />
+              }
             </Route>
             <Route exact path="/board-games/:id">
               {/* if there is a user, render the detail page. Otherwise, redirect to the home route/auth page */}
+              {
+                user
+                  ? <DetailPage />
+                  : <Redirect to={'/'} />
+              }
             </Route>
             <Route exact path="/create">
               {/* if there is a user, render the create page. Otherwise, redirect to the home route/auth page */}
+              {
+                user
+                  ? <CreatePage />
+                  : <Redirect to={'/'} />
+              }
             </Route>
           </Switch>
         </main>
